@@ -1,0 +1,23 @@
+{
+  "name": "nicosound-link",
+  "version": "1.2.0",
+  "manifest_version": 2,
+  "icons":{"16":"icon16.png",
+  "48":"icon48.png",
+  "128":"icon128.png"},
+  "description": "検索ページと公開マイリストページで動画リンクを見つけてにこさうんどへのリンクボタンをつくるエクステンションです。リンクボタンを表示させるにはページの中の何も無い所を１回クリックしてください",
+  "content_scripts": [
+    {
+      "matches": ["http://www.nicovideo.jp/mylist/*","http://www.nicovideo.jp/search/*","http://www.nicovideo.jp/tag/*"],
+      "js": ["nico.js"]
+    },
+  {
+	  "matches": ["http://www.nicovideo.jp/user/*/video"],
+	  "js": ["myContList.js"]
+  },
+  {
+	  "matches":["http://www.nicovideo.jp/watch/sm*"],
+	  "js": ["watchpage.js"]
+  }
+  ]
+}
