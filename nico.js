@@ -5,29 +5,27 @@ var isClicked = false;
 
 window.onclick = function(){
   if(!isClicked){
-    generateLink();
+    var nicovideo = new NicoVideo(doc, NicoVideo.mylist_page_type);
+    nicovideo.addNicosoundButton();
   }
   isClicked = true;
 };
 
-var NicoVideo = function(doc){
-  this.doc = doc;
-  //メンバ：動画リスト
-}
+var NicoVideo = function(doc, page_type){
+  this.video_node_list = doc.getElementsByClassName("watch");
+  this.page_type = page_type;
+};
 
-function addNicosoundButton(video_node_list){
+NicoVideo.mylist_page_type = "mylist"
+
+NicoVideo.prototype.addNicosoundButton = function(){
   //動画リストにnicosoundボタンをつける
-  for (var i = 0; i < video_node_list.length; i++){
-    var origin_video_node = video_node_list[i];
+  for (var i = 0; i < this.video_node_list.length; i++){
+    var origin_video_node = this.video_node_list[i];
     var nicosound_button = createNicosoundButton(origin_video_node);
     origin_video_node.parentNode.parentNode.appendChild(nicosound_button);
   }
-}
-
-function generateLink() {
-    var originLinkTag = doc.getElementsByClassName("watch");
-    addNicosoundButton(originLinkTag);
-}
+};
 
 var Button = function(originTagNode) {
   this.originTagNode = originTagNode;
