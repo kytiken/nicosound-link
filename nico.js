@@ -10,18 +10,19 @@ window.onclick = function(){
   isClicked = true;
 };
 
-function addNicosoundButton(videoNodeList){
+function addNicosoundButton(video_node_list){
   //動画リストにnicosoundボタンをつける
+  for (var i = 0; i < video_node_list.length; i++){
+    var origin_video_node = video_node_list[i];
+    var button = new Button(origin_video_node);
+    var nsButton = button.createNsButton();
+    origin_video_node.parentNode.parentNode.appendChild(nsButton);
+  }
 }
 
 function generateLink() {
     var originLinkTag = doc.getElementsByClassName("watch");
-    for (var i = 0; i < originLinkTag.length; i++){
-    var originTagNode = originLinkTag[i];
-    var button = new Button(originTagNode);
-    var nsButton = button.createNsButton();
-    originTagNode.parentNode.parentNode.appendChild(nsButton);
-  }
+    addNicosoundButton(originLinkTag);
 }
 
 var Button = function(originTagNode) {
