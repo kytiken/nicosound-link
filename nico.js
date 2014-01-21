@@ -10,6 +10,11 @@ window.onclick = function(){
   isClicked = true;
 };
 
+var NicoVideo = function(doc){
+  this.doc = doc;
+  //メンバ：動画リスト
+}
+
 function addNicosoundButton(video_node_list){
   //動画リストにnicosoundボタンをつける
   for (var i = 0; i < video_node_list.length; i++){
