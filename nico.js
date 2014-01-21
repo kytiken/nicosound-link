@@ -33,31 +33,29 @@ var NicoSound = function(video_url){
 }
 
 NicoSound.button_name = "nicosound";
-
-var Button = function(originTagNode) {
-  this.originTagNode = originTagNode;
-};
+NicoSound.site_url = 'http://nicosound.anyap.info/';
+NicoSound.smile_video_url_pattern = /sm\d*/;
+NicoSound.nmm_video_url_pattern = /nm\d*/;
+NicoSound.ch_video_url_pattern = /\d*/;
 
 NicoSound.prototype.createNicosoundButton = function(){
   var nicosound_url = this.createSoundUrl();
-  var nsButton = doc.createElement("button");
-  var button = nsButton.appendChild(doc.createTextNode(NicoSound.button_name));
-  nsButton.onclick = function(){
+  var nicosound_button = doc.createElement("button");
+  nicosound_button.appendChild(doc.createTextNode(NicoSound.button_name));
+  nicosound_button.onclick = function(){
     window.open(nicosound_url);
   };
-  return nsButton;
+  return nicosound_button;
 };
 
 NicoSound.prototype.createSoundUrl = function() {
-  var url = 'http://nicosound.anyap.info/';
-  var searchId = /sm\d*/;
-  var videoId = this.video_url.match(searchId);
-  if(videoId == null){
-    var searchId = /nm\d*/;
-    var videoId = sourcePathname.match(searchId);
-  } else if(videoId == null){
-    var searchId = /\d*/;
-    var videoId = sourcePathname.match(searchId);
+  var video_id;
+  if(NicoSound.smile_video_url_pattern.test(this.video_url)){
+    video_id = this.video_url.match(NicoSound.smile_video_url_pattern)[0];
+  } else if(NicoSound.nmm_video_url_pattern.test(this.video_url)) {
+    video_id = this.video_url.match(NicoSound.nmm_video_url_pattern);
+  } else if(NicoSound.ch_video_url_pattern.test(this.video_url)) {
+    video_id = this.video_url.match(NicoSound.ch_video_url_pattern);
   }
-  return url + 'sound/' + videoId;
+  return NicoSound.site_url + 'sound/' + video_id;
 };
