@@ -1,4 +1,8 @@
-isClicked = false;
+"use strict";
+
+var doc = document;
+var isClicked = false;
+
 window.onclick = function(){
   if(!isClicked){
     generateLink();
@@ -6,9 +10,7 @@ window.onclick = function(){
   isClicked = true;
 };
 
-var doc = document;
 function generateLink() {
-    "use strict";
     var originLinkTag = doc.getElementsByClassName("watch");
     for (var i = 0; i < originLinkTag.length; i++){
     var originTagNode = originLinkTag[i];
