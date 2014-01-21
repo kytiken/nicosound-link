@@ -14,8 +14,7 @@ function addNicosoundButton(video_node_list){
   //動画リストにnicosoundボタンをつける
   for (var i = 0; i < video_node_list.length; i++){
     var origin_video_node = video_node_list[i];
-    var button = new Button(origin_video_node);
-    var nicosound_button = button.createNsButton();
+    var nicosound_button = createNicosoundButton(origin_video_node);
     origin_video_node.parentNode.parentNode.appendChild(nicosound_button);
   }
 }
@@ -29,15 +28,15 @@ var Button = function(originTagNode) {
   this.originTagNode = originTagNode;
 };
 
-Button.prototype.createNsButton = function(){
-  var nicosound = createSoundUrl(this.originTagNode.href);
+function createNicosoundButton(origin_video_node){
+  var nicosound = createSoundUrl(origin_video_node.href);
   var nsButton = doc.createElement("button");
   var button = nsButton.appendChild(doc.createTextNode("nicosound"));
   nsButton.onclick = function(){
     window.open(nicosound);
   };
   return nsButton;
-};
+}
 
 function createSoundUrl( sourcePathname ) {
   var url = 'http://nicosound.anyap.info/';
