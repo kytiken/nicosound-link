@@ -39,19 +39,19 @@ var Button = function(originTagNode) {
 };
 
 NicoSound.prototype.createNicosoundButton = function(){
-  var nicosound = createSoundUrl(this.video_url);
+  var nicosound_url = this.createSoundUrl();
   var nsButton = doc.createElement("button");
   var button = nsButton.appendChild(doc.createTextNode(NicoSound.button_name));
   nsButton.onclick = function(){
-    window.open(nicosound);
+    window.open(nicosound_url);
   };
   return nsButton;
 };
 
-function createSoundUrl( sourcePathname ) {
+NicoSound.prototype.createSoundUrl = function() {
   var url = 'http://nicosound.anyap.info/';
   var searchId = /sm\d*/;
-  var videoId = sourcePathname.match(searchId);
+  var videoId = this.video_url.match(searchId);
   if(videoId == null){
     var searchId = /nm\d*/;
     var videoId = sourcePathname.match(searchId);
@@ -60,4 +60,4 @@ function createSoundUrl( sourcePathname ) {
     var videoId = sourcePathname.match(searchId);
   }
   return url + 'sound/' + videoId;
-}
+};
