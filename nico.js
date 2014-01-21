@@ -22,24 +22,31 @@ NicoVideo.prototype.addNicosoundButton = function(){
   //動画リストにnicosoundボタンをつける
   for (var i = 0; i < this.video_node_list.length; i++){
     var origin_video_node = this.video_node_list[i];
-    var nicosound_button = createNicosoundButton(origin_video_node);
+    var nicosound = new NicoSound(origin_video_node.href);
+    var nicosound_button = nicosound.createNicosoundButton();
     origin_video_node.parentNode.parentNode.appendChild(nicosound_button);
   }
 };
+
+var NicoSound = function(video_url){
+  this.video_url = video_url;
+}
+
+NicoSound.button_name = "nicosound";
 
 var Button = function(originTagNode) {
   this.originTagNode = originTagNode;
 };
 
-function createNicosoundButton(origin_video_node){
-  var nicosound = createSoundUrl(origin_video_node.href);
+NicoSound.prototype.createNicosoundButton = function(){
+  var nicosound = createSoundUrl(this.video_url);
   var nsButton = doc.createElement("button");
-  var button = nsButton.appendChild(doc.createTextNode("nicosound"));
+  var button = nsButton.appendChild(doc.createTextNode(NicoSound.button_name));
   nsButton.onclick = function(){
     window.open(nicosound);
   };
   return nsButton;
-}
+};
 
 function createSoundUrl( sourcePathname ) {
   var url = 'http://nicosound.anyap.info/';
