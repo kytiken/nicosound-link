@@ -9,15 +9,15 @@
   "content_scripts": [
     {
       "matches": ["http://www.nicovideo.jp/mylist/*","http://www.nicovideo.jp/search/*","http://www.nicovideo.jp/tag/*"],
-      "js": ["nico.js"]
+      "js": ["onMyListPage.js","nico.js"]
     },
   {
 	  "matches": ["http://www.nicovideo.jp/user/*/video"],
-	  "js": ["myContList.js"]
+	  "js": ["onUserPage.js","nico.js"]
   },
   {
 	  "matches":["http://www.nicovideo.jp/watch/sm*"],
-	  "js": ["watchpage.js"]
+	  "js": ["onWatchPage.js"]
   }
   ]
 }
