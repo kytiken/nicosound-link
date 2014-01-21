@@ -10,6 +10,10 @@ window.onclick = function(){
   isClicked = true;
 };
 
+function addNicosoundButton(videoNodeList){
+  //動画リストにnicosoundボタンをつける
+}
+
 function generateLink() {
     var originLinkTag = doc.getElementsByClassName("watch");
     for (var i = 0; i < originLinkTag.length; i++){
